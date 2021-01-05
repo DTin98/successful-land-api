@@ -1,4 +1,4 @@
-let jwt = require("jsonwebtoken");
+const jwt = require("jsonwebtoken");
 const reqResponse = require("../helpers/responseHandler");
 const key = "Very*S!e!c!r!e!t*";
 
