@@ -1,0 +1,23 @@
+{
+  "dev": {
+    "name": "Successful Land API - Dev Mode",
+    "port": 4100,
+    "mode": "development",
+    "protocol": "http",
+    "serverUrl": "localhost",
+    "serverUrlWebUrlLink": "localhost:4200/",
+    "database": {
+      "multipleStatements": true,
+      "host": "",
+      "user": "",
+      "password": "",
+      "database": ""
+    },
+    "email": {
+      "host": "",
+      "port": "",
+      "username": "",
+      "password": ""
+    }
+  }
+}
