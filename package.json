@@ -1,7 +1,7 @@
 {
-  "name": "Successful Land API",
+  "name": "Successful-Land-API",
   "version": "1.0.0",
-  "description": "",
+  "description": "Project for estate",
   "main": "index.js",
   "scripts": {
     "dev": "NODE_ENV=dev nodemon --inspect=5001 --config nodemon.js src/server.js",
