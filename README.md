@@ -1,42 +1,26 @@
-# Nodejs File Stucture Express
-Nodejs Project Structure For Express REST API
+# How to run
 
-## General Info
-Sample Nodejs Project file structure architecture created by [Srujal Patel](#http://github.com/iamsrujal)
+`npm i && npm run dev`
 
+# SuccessfullLand
 
-## Testing Locally
-Make sure you have installed [Nodejs](#https://nodejs.org/en/), [npm](#https://www.npmjs.com/get-npm) and [git](#https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
-<br />
-<small>Note: npm is installed with Node.js</small>
+**“ProperTech – Hệ thống Phân tích và Dự Báo xu hướng Bất Động Sản tại Việt Nam”**
+Prop-tech (Property Technology) - Công nghệ trong lĩnh vực bất động sản (BĐS) là xu hướng đang tạo ra sự thay đổi nhanh chóng trong mô hình kinh doanh BĐS gần đây tại Việt Nam. Prop-tech giúp các nhà phát triển dự án, doanh nghiệp kinh doanh BĐS thay đổi và thích nghi với thế hệ khách hàng mới trên internet. Prop-tech là thuật ngữ được sử dụng bắt đầu từ nước Anh nhằm chỉ các công nghệ trong ngành BĐS trên 3 mảng chính: thông tin BĐS, giao dịch BĐS và quản lý BĐS. Theo The Guardian, Prop-tech là một xu hướng được bắt đầu tại nước này bởi sự ra đời của những kênh thông tin điện tử về BĐS như Rightmove.co.uk (thành lập năm 2000) – hiện đang là kênh thông tin số 1 về BĐS tại Anh hay Zoopla.co.uk. Nhận thấy nhu cầu tìm hiểu, phân tích, so sánh, và sử dụng công nghệ trong lĩnh vực bất động sản tại Việt Nam, đề tài này mong muốn thực hiện các yêu cầu sau:
 
-```bash
-git clone https://github.com/iamsrujal/nodejs-file-stucture-express.git
+- Rút trích dữ liệu phù hợp với các thông tin đăng bán và giao dịch của thị trường
+- Phân nhóm, so sánh, đánh giá, tiền xử lý dữ liệu
+- Dự đoán xu hướng các BDS theo khu vực
+- Cung cấp các thông tin minh bạch cho thị trường
 
-cd nodejs-file-stucture-express
+# Thời gian thực hiện đề tài:
 
-npm install or npm i
+## 6 tháng – từ tháng 9/2020 - 3/2021 Giảng Viên Hướng Dẫn: TS Nguyễn Hải Quân
 
-npm run dev (For Development environment) 
+## Sinh viên đăng ký
 
-OR
-
-npm run staging (For Staging environment)
-
-OR
-
-npm run prod (For Production environment)
-```
-
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-## License
->You can check out the full license [here](https://github.com/iamsrujal/nodejs-file-stucture-express/blob/master/LICENSE)
-
-[MIT](https://choosealicense.com/licenses/mit/)
-
-
-
-
-
+| Họ và Tên       | Mã số SV |            Email             | SDT        |
+| --------------- | -------- | :--------------------------: | ---------- |
+| Trương Đại Tín  | 1612699  | 1612699@student.hcmus.edu.vn | 0986114478 |
+| Huỳnh Ngọc Hiển | 1512167  | 1512167@student.hcmus.edu.vn | 0889828075 |
+| Nguyễn Anh Tú   | 1612764  | 1612764@student.hcmus.edu.vn | 0922400382 |
+| Nguyễn Long     | 1612764  | 1612764@student.hcmus.edu.vn | 0922400382 |
