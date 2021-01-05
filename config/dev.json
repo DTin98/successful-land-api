@@ -8,10 +8,12 @@
     "serverUrlWebUrlLink": "localhost:4200/",
     "database": {
       "multipleStatements": true,
-      "host": "",
-      "user": "",
-      "password": "",
-      "database": ""
+      "host": "158.101.20.6",
+      "port": "27017",
+      "username": "admin",
+      "password": "Admin%40123haha%23%23%23",
+      "database": "NODE_DB",
+      "authenticationDatabase": "NODE_DB"
     },
     "email": {
       "host": "",

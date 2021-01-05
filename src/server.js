@@ -47,13 +47,22 @@ const start = () =>
 
 dbConnection = () => {
   // When you try to connect database please comment bellow start method
-  start();
+  // start();
 
   // MONGO database connection start
-
   const databaseConfig = config.get(`${mode}.database`);
-
-  //do connect
+  mongoose.connect(
+    `mongodb://${databaseConfig.username}:${databaseConfig.password}@${databaseConfig.host}:${databaseConfig.port}/${databaseConfig.database}?authSource=${databaseConfig.authenticationDatabase}`,
+    {
+      useNewUrlParser: "true",
+    }
+  );
+  mongoose.connection.on("error", (err) => {
+    console.log("err", err);
+  });
+  mongoose.connection.on("connected", (err, res) => {
+    start();
+  });
 };
 
 dbConnection();
