@@ -7,7 +7,10 @@ const app = express();
 const pack = require("../package");
 const mongoose = require("mongoose");
 const path = require("path");
+const compression = require("compression"); //gzip
+const morgan = require("./middlewares/morganMiddleware");
 
+app.use(morgan);
 app.use(cors());
 app.use(bodyParser.json());
 app.use(
