@@ -11,5 +11,5 @@ module.exports = (app) => {
 
   router.route("/login").post(Validation.login(), AuthController.login);
 
-  app.use(RouteConstant.LOCAL, router);
+  app.use(RouteConstant.LOCAL_AUTH, router);
 };
