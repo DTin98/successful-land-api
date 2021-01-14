@@ -21,12 +21,12 @@ module.exports = {
     {
       status: "404",
       message: "User already registered.",
-      data: "User already registered.",
+      data: "username or email already registered",
     },
     {
       status: "405",
-      message: "Your password is incorrect.",
-      data: "Your password is incorrect.",
+      message: "Your username or password is incorrect.",
+      data: "Your username or password is incorrect.",
     },
     {
       status: "406",

@@ -8,9 +8,9 @@ const pack = require("../package");
 const mongoose = require("mongoose");
 const path = require("path");
 const compression = require("compression"); //gzip
-const morgan = require("./middlewares/morganMiddleware");
+const logMiddleware = require("./middlewares/logMiddleware");
 
-app.use(morgan);
+app.use(logMiddleware);
 app.use(cors());
 app.use(bodyParser.json());
 app.use(
@@ -18,10 +18,6 @@ app.use(
     extended: false,
   })
 );
-
-app.get("/", (req, res) => {
-  res.send("Hello");
-});
 
 app.use(require("express-status-monitor")());
 
@@ -55,9 +51,11 @@ dbConnection = () => {
   // MONGO database connection start
   const databaseConfig = config.get(`${mode}.database`);
   mongoose.connect(
-    `mongodb://${databaseConfig.username}:${databaseConfig.password}@${databaseConfig.host}:${databaseConfig.port}/${databaseConfig.database}?authSource=${databaseConfig.authenticationDatabase}`,
+    `mongodb+srv://${databaseConfig.username}:${databaseConfig.password}@${databaseConfig.host}/${databaseConfig.database}`,
     {
       useNewUrlParser: "true",
+      useUnifiedTopology: true,
+      serverSelectionTimeoutMS: 30000,
     }
   );
   mongoose.connection.on("error", (err) => {

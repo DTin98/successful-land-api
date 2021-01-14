@@ -6,7 +6,7 @@
     "protocol": "http",
     "serverUrl": "localhost",
     "serverUrlWebUrlLink": "localhost:4200/",
-    "database": {
+    "database_v2": {
       "multipleStatements": true,
       "host": "158.101.20.6",
       "port": "27017",
@@ -14,6 +14,15 @@
       "password": "Admin%40123haha%23%23%23",
       "database": "NODE_DB",
       "authenticationDatabase": "NODE_DB"
+    },
+    "database": {
+      "multipleStatements": true,
+      "host": "cluster0.0g1dc.mongodb.net",
+      "port": "27017",
+      "username": "admin",
+      "password": "Datn123",
+      "database": "NODE_DB",
+      "authenticationDatabase": "admin"
     },
     "email": {
       "host": "",

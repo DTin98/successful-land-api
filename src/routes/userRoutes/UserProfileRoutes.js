@@ -6,10 +6,6 @@ const Validation = require("../../validation/UserValidation");
 
 module.exports = (app) => {
   router
-    .route("/create")
-    .post(Validation.create(), UserProfileController.createUser);
-
-  router
     .route("/update")
     .post(Validation.update(), UserProfileController.updateUser);
 
