@@ -19,6 +19,7 @@ AreaSchema.indexes(
   { provinceCode: -1, districtCode: -1, villageCode: -1 },
   { unique: true }
 );
+AreaSchema.indexes({ fullAddress: "text" });
 
 const Area = mongoose.model("areas", AreaSchema);
 module.exports = Area;
