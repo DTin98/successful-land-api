@@ -102,30 +102,4 @@ module.exports = {
         );
     }
   },
-
-  updateUser: (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(402).send(reqResponse.errorResponse(402));
-    }
-    let data = req.body;
-    let params = req.params;
-    let query = req.query;
-    UserProfileServices.updateUser(data, params, query)
-      .then((result) => {
-        res
-          .status(201)
-          .send(
-            reqResponse.successResponse(
-              201,
-              "User Updated",
-              "User has been updated successfully"
-            )
-          );
-      })
-      .catch((error) => {
-        console.error(error);
-        res.status(502).send(reqResponse.errorResponse(502));
-      });
-  },
 };

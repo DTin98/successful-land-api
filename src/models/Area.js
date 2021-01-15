@@ -8,6 +8,11 @@ const AreaSchema = new Schema(
     provinceCode: { type: String, required: true },
     districtCode: { type: String, required: true },
     villageCode: { type: String, required: true },
+    border: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "border",
+      select: false,
+    },
   },
   {
     collection: "areas",
