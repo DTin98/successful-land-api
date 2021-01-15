@@ -1,4 +1,6 @@
 const User = require("../models/User");
+const Area = require("../models/Area");
+const { ObjectId } = require("mongoose").Types;
 const bcrypt = require("bcrypt");
 const saltRounds = 12;
 
@@ -35,6 +37,28 @@ module.exports = {
         .catch((error) => {
           reject(error);
         });
+    });
+  },
+  addOneFavoriteArea: async (data, params, query) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        let area = await Area.findOne({ _id: data.areaId });
+        if (!area) reject(new Error("area is not existed"));
+
+        await User.updateOne(
+          {
+            $or: [{ username: data.username }, { email: data.email }],
+          },
+          { $addToSet: { favoriteAreas: data.areaId } }
+        )
+          .lean()
+          .exec()
+          .then((user) => {
+            resolve(user);
+          });
+      } catch (error) {
+        reject(error);
+      }
     });
   },
 };

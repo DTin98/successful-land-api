@@ -15,18 +15,31 @@ module.exports = {
 
     try {
       let border = await BorderServices.findOne(data, params, query);
-      if (!border)
-        return res
-          .status(400)
-          .send({ statusCode: 400, message: "border is not found", data: "" });
-      else return res.status(200).send(border);
+      if (!border) throw new Error("border is not found");
+      return res.status(200).send(border);
     } catch (error) {
       console.error(error);
-      return res
-        .status(500)
-        .send(
-          reqResponse.customErrorResponse(500, "Server Error", error.message)
-        );
+      switch (error.message) {
+        case "border is not found":
+          return res
+            .status(400)
+            .send(
+              reqResponse.customErrorResponse(400, "Invalid", error.message)
+            );
+          break;
+
+        default:
+          return res
+            .status(500)
+            .send(
+              reqResponse.customErrorResponse(
+                500,
+                "Server Error",
+                error.message
+              )
+            );
+          break;
+      }
     }
   },
 };

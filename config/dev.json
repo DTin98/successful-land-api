@@ -1,7 +1,7 @@
 {
   "dev": {
     "name": "Successful Land API - Dev Mode",
-    "port": 4100,
+    "port": 4000,
     "mode": "development",
     "protocol": "http",
     "serverUrl": "localhost",
