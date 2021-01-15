@@ -7,7 +7,10 @@ module.exports = {
   getByBorder: () => {
     return [query("border_id", "border_id is required").not().isEmpty()];
   },
-  addToFavorite: () => {
+  addFavorite: () => {
+    return [body("areaId", "areaId is required").not().isEmpty()];
+  },
+  deleteFavorite: () => {
     return [body("areaId", "areaId is required").not().isEmpty()];
   },
 };

@@ -4,4 +4,5 @@ module.exports = {
   LOCAL_AUTH: "/v1/local",
   AREAS: "/v1/areas",
   BORDERS: "/v1/borders",
+  UTILITIES: "/v1/utilities",
 };

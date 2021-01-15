@@ -1,4 +1,4 @@
-const UserProfileServices = require("../../services/UserProfileServices");
+const userServices = require("../../services/UserServices");
 const reqResponse = require("../../helpers/responseHandler");
 const { validationResult } = require("express-validator");
 
@@ -12,7 +12,7 @@ module.exports = {
     let params = req.params;
     let query = req.query;
     try {
-      let result = await UserProfileServices.createUser(data, params, query);
+      let result = await userServices.createUser(data, params, query);
       res
         .status(201)
         .send(
@@ -36,7 +36,8 @@ module.exports = {
     let data = req.body;
     let params = req.params;
     let query = req.query;
-    UserProfileServices.updateUser(data, params, query)
+    userServices
+      .updateUser(data, params, query)
       .then((result) => {
         res
           .status(201)

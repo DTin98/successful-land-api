@@ -11,11 +11,15 @@ module.exports = (app) => {
     .get(Validation.getByBorder(), AreasController.getByBorder);
 
   router
-    .route("/addToFavorite")
+    .route("/addFavorite")
+    .post(Validation.addFavorite(), Middleware, AreasController.addFavorite);
+
+  router
+    .route("/deleteFavorite")
     .post(
-      Validation.addToFavorite(),
+      Validation.deleteFavorite(),
       Middleware,
-      AreasController.addToFavorite
+      AreasController.deleteFavorite
     );
 
   app.use(RouteConstant.AREAS, router);

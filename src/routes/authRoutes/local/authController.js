@@ -1,4 +1,4 @@
-const UserProfileServices = require("../../../services/UserProfileServices");
+const userServices = require("../../../services/UserServices");
 const reqResponse = require("../../../helpers/responseHandler");
 const { validationResult } = require("express-validator");
 const jwt = require("jsonwebtoken");
@@ -18,18 +18,16 @@ module.exports = {
 
     try {
       //check user is existed?
-      await UserProfileServices.findOneUser(data, params, query).then(
-        (user) => {
-          if (user)
-            throw {
-              statusCode: 401,
-              message: "User already registered",
-              data: "username or email already registered",
-            };
-        }
-      );
+      await userServices.findOneUser(data, params, query).then((user) => {
+        if (user)
+          throw {
+            statusCode: 401,
+            message: "User already registered",
+            data: "username or email already registered",
+          };
+      });
 
-      await UserProfileServices.createUser(data, params, query).then((user) => {
+      await userServices.createUser(data, params, query).then((user) => {
         let token = jwt.sign(
           { _id: user._id, username: user.username },
           process.env.TOKEN_SECRET,
@@ -67,32 +65,30 @@ module.exports = {
     let query = req.query;
 
     try {
-      await UserProfileServices.findOneUser(data, params, query).then(
-        async (user) => {
-          //should update to using bcrypt hashing
-          if (user) {
-            const isCorrectPassword = await bcrypt.compare(
-              data.password,
-              user.password
+      await userServices.findOneUser(data, params, query).then(async (user) => {
+        //should update to using bcrypt hashing
+        if (user) {
+          const isCorrectPassword = await bcrypt.compare(
+            data.password,
+            user.password
+          );
+          if (isCorrectPassword) {
+            let token = jwt.sign(
+              { _id: user._id, username: user.username },
+              process.env.TOKEN_SECRET,
+              {
+                expiresIn: "10h",
+              }
             );
-            if (isCorrectPassword) {
-              let token = jwt.sign(
-                { _id: user._id, username: user.username },
-                process.env.TOKEN_SECRET,
-                {
-                  expiresIn: "10h",
-                }
-              );
-              return res.status(200).send({
-                jwt: token,
-                user: _.omit(user, ["password"]),
-              });
-            } else res.status(405).json(reqResponse.errorResponse(405));
-          } else {
-            res.status(405).json(reqResponse.errorResponse(405));
-          }
+            return res.status(200).send({
+              jwt: token,
+              user: _.omit(user, ["password"]),
+            });
+          } else res.status(405).json(reqResponse.errorResponse(405));
+        } else {
+          res.status(405).json(reqResponse.errorResponse(405));
         }
-      );
+      });
     } catch (error) {
       console.error(error);
       return res

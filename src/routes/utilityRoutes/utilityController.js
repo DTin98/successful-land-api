@@ -1,6 +1,6 @@
 const reqResponse = require("../../helpers/responseHandler");
 const { validationResult } = require("express-validator");
-const AreaServices = require("../../services/AreaServices");
+const UtilityServices = require("../../services/AreaServices");
 const userServices = require("../../services/UserServices");
 const _ = require("lodash");
 
@@ -15,7 +15,7 @@ module.exports = {
     let query = req.query;
 
     try {
-      let areas = await AreaServices.search(data, params, query);
+      let areas = await UtilityServices.search(data, params, query);
       return res.status(200).send(areas);
     } catch (error) {
       return res
@@ -35,7 +35,7 @@ module.exports = {
     let query = req.query;
 
     try {
-      let area = await AreaServices.findOne(data, params, query);
+      let area = await UtilityServices.findOne(data, params, query);
       if (!area) throw new Error("area is not found");
       return res.status(200).send(area);
     } catch (error) {

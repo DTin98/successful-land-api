@@ -53,6 +53,25 @@ module.exports = {
         )
           .lean()
           .exec()
+          .then((result) => {
+            resolve(result);
+          });
+      } catch (error) {
+        reject(error);
+      }
+    });
+  },
+  deleteOneFavoriteArea: async (data, params, query) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        await User.updateOne(
+          {
+            $or: [{ username: data.username }, { email: data.email }],
+          },
+          { $pullAll: { favoriteAreas: [data.areaId] } }
+        )
+          .lean()
+          .exec()
           .then((user) => {
             resolve(user);
           });
