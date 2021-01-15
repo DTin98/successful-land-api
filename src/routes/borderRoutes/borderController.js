@@ -14,7 +14,7 @@ module.exports = {
     let query = req.query;
 
     try {
-      let border = await BorderServices.findOne(data, params, query);
+      let border = await BorderServices.findOneByArea(data, params, query);
       if (!border) throw new Error("border is not found");
       return res.status(200).send(border);
     } catch (error) {

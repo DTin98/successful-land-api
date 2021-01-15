@@ -20,5 +20,5 @@ const UtilitySchema = new Schema(
 UtilitySchema.set("timestamps", true);
 UtilitySchema.indexes({ gps: "2dsphere" });
 
-const Utility = mongoose.model("areas", UtilitySchema);
+const Utility = mongoose.model("utilities", UtilitySchema);
 module.exports = Utility;
