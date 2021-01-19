@@ -78,7 +78,7 @@ module.exports = {
       data.email = req.decoded.email || "";
 
       await userServices.addOneFavoriteArea(data, params, query);
-      return res.status(200).send({ ok: false });
+      return res.status(200).send({ ok: true });
     } catch (error) {
       console.error(error);
       switch (error.message) {

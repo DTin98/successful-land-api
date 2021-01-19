@@ -5,7 +5,8 @@ const Middleware = require("../../middlewares/authMiddleware").checkToken;
 const Validation = require("../../validation/AreaValidation");
 
 module.exports = (app) => {
-  router.route("/search").get(Validation.search(), AreasController.search);
+  router
+    .route("/search").get(Validation.search(), AreasController.search);
   router
     .route("/getByBorder")
     .get(Validation.getByBorder(), AreasController.getByBorder);
@@ -24,3 +25,4 @@ module.exports = (app) => {
 
   app.use(RouteConstant.AREAS, router);
 };
+

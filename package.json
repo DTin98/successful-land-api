@@ -2,12 +2,22 @@
   "name": "Successful-Land-API",
   "version": "1.0.0",
   "description": "Project for estate",
+  "apidoc": {
+    "name": "API Đồ Án Tốt Nghiệp",
+    "version": "0.1.0",
+    "description": "Successful-Land-API",
+    "apidoc": {
+      "title": "Custom apiDoc browser title",
+      "url" : "https://api.github.com/v1"
+    }
+  },
   "main": "index.js",
   "scripts": {
     "develop": "SET NODE_ENV=dev & nodemon --inspect=5001 --config nodemon.js src/server.js",
     "dev": "NODE_ENV=dev nodemon --config nodemon.js src/server.js",
     "staging": "NODE_ENV=staging  nodemon --inspect=5001 --config nodemon.js src/server.js",
-    "production": "NODE_ENV=production  nodemon --inspect=5001 --config nodemon.js src/server.js"
+    "production": "NODE_ENV=production  nodemon --inspect=5001 --config nodemon.js src/server.js",
+    "doc": "apidoc -i ./src -o apidoc/"
   },
   "author": "",
   "license": "ISC",

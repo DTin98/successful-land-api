@@ -67,3 +67,8 @@ dbConnection = () => {
 };
 
 dbConnection();
+
+var dirname = __dirname;
+module.exports = {
+    dir: dirname,
+  };
