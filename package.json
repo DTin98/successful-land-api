@@ -17,7 +17,7 @@
     "dev": "NODE_ENV=dev nodemon --config nodemon.js src/server.js",
     "staging": "NODE_ENV=staging  nodemon --inspect=5001 --config nodemon.js src/server.js",
     "production": "NODE_ENV=production  nodemon --inspect=5001 --config nodemon.js src/server.js",
-    "doc": "apidoc -i ./src -o apidoc/"
+    "doc": "apidoc -i ./src -o apiDocHTML/"
   },
   "author": "",
   "license": "ISC",

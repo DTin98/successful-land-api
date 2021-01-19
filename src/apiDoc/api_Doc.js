@@ -5,7 +5,7 @@
  *
  * @apiParam (Query string) {String} _q Tên khu vực người dùng nhập.
  * @apiParamExample {json} Request-Example:
- *     http://localhost:4000/v1/areas/search?_q=hồ
+ *     http://175.41.154.174:4000/v1/areas/search?_q=hồ
  *
  *
  * @apiSuccessExample Success-Response:
@@ -21,7 +21,7 @@
  *
  * @apiParam (Query string) {String} border_id Truyền ID Border.
  * @apiParamExample {json} Request-Example:
- *     http://localhost:4000/v1/areas/getByBorder?border_id=5ff7f56a15b2b03644824b5a
+ *     http://175.41.154.174:4000/v1/areas/getByBorder?border_id=5ff7f56a15b2b03644824b5a
  *
  *
  * @apiSuccessExample Success-Response:
@@ -39,7 +39,7 @@
  * @apiParam {String} areaId Truyền AreaID.
 
  * @apiParamExample {json} Request-Example:
- *     http://localhost:4000/v1/areas/addFavorite
+ *     http://175.41.154.174:4000/v1/areas/addFavorite
  *Post
 	username: hien
 	areaId: 5f9eb794bfeb451c39400633
@@ -62,7 +62,7 @@
  * @apiParam {String} areaId Truyền AreaID.
 
  * @apiParamExample {json} Request-Example:
- *     http://localhost:4000/v1/areas/deleteFavorite
+ *     http://175.41.154.174:4000/v1/areas/deleteFavorite
  *Post
 	username: hien
 	areaId: 5f9eb794bfeb451c39400633
@@ -86,7 +86,7 @@
  * @apiParam {String} email Truyền email.
 
  * @apiParamExample {json} Request-Example:
- *     http://localhost:4000/v1/local/register
+ *     http://175.41.154.174:4000/v1/local/register
  *Post
 	username: hien
 	password: hien123
@@ -121,7 +121,7 @@
 
 
  * @apiParamExample {json} Request-Example:
- *     http://localhost:4000/v1/local/login
+ *     http://175.41.154.174:4000/v1/local/login
  *Post
 	username: hien
 	password: hien123
@@ -151,7 +151,7 @@
  *
  * @apiParam (Query string) {String} area_id ID Area.
  * @apiParamExample {json} Request-Example:
- *     http://localhost:4000/v1/borders/getByArea?area_id=5f9ec4e8bfeb451c39403324
+ *     http://175.41.154.174:4000/v1/borders/getByArea?area_id=5f9ec4e8bfeb451c39403324
  *
  *
  * @apiSuccessExample Success-Response:

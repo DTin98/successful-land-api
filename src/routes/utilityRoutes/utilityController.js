@@ -42,4 +42,43 @@ module.exports = {
       }
     }
   },
+  count: async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(402).send(errors);
+    }
+
+    let data = req.body;
+    let params = req.params;
+    let query = req.query;
+
+    try {
+      var utilities = await UtilityServices.count(data, params, query);
+      var dataCount =[{count :utilities.length }]
+      return res.status(200).send(dataCount);
+    } catch (error) {
+      console.error(error);
+      switch (error.message) {
+        case "border is not found":
+          return res
+            .status(400)
+            .send(
+              reqResponse.customErrorResponse(400, "Invalid", error.message)
+            );
+          break;
+
+        default:
+          return res
+            .status(500)
+            .send(
+              reqResponse.customErrorResponse(
+                500,
+                "Server Error",
+                error.message
+              )
+            );
+          break;
+      }
+    }
+  },
 };
