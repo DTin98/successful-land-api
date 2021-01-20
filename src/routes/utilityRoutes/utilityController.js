@@ -54,7 +54,7 @@ module.exports = {
 
     try {
       var utilities = await UtilityServices.count(data, params, query);
-      var dataCount =[{count :utilities.length }]
+      var dataCount ={count :utilities.length, category: query.category }
       return res.status(200).send(dataCount);
     } catch (error) {
       console.error(error);
