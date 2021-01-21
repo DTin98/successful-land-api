@@ -23,6 +23,10 @@ module.exports = (app) => {
       AreasController.deleteFavorite
     );
 
+  router
+    .route("/addRate")
+    .post(Middleware, AreasController.addRate);
+
   app.use(RouteConstant.AREAS, router);
 };
 

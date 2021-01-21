@@ -8,7 +8,7 @@ module.exports = {
   search: async (data, params, query) => {
     let _limit = +query._limit || 0;
     let borders = query.borders || null;
-    let area_id = query.area_id || null;
+    let area_id = query.border_id || null;
     let db_query = {};
     db_query.category = query.category;
 
@@ -16,7 +16,7 @@ module.exports = {
       let utilities = [];
       try {
         if (area_id) {
-          let border = await BorderServices.findOneByArea(data, params, query);
+          let border = await BorderServices.findOneByBorder(data, params, query);
           if (!border) throw new Error("border is not found");
           else {
             db_query.gps = { $geoWithin: { $geometry: border.geometry } };
@@ -35,7 +35,7 @@ module.exports = {
 
         utilities = Utility.find(db_query)
           .limit(_limit)
-          .select("hash gps category")
+          .select("hash gps category address")
           .lean();
         resolve(utilities);
       } catch (error) {
@@ -46,7 +46,7 @@ module.exports = {
   count: async (data, params, query) => {
     let _limit = +query._limit || 0;
     let borders = query.borders || null;
-    let area_id = query.area_id || null;
+    let area_id = query.border_id || null;
     let db_query = {};
     db_query.category = query.category;
 

@@ -14,4 +14,16 @@ module.exports = {
       }
     });
   },
+  findOneByBorder: async (data, params, query) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        let border = Border.findOne({
+          _id: new ObjectId(query.border_id),
+        }).lean();
+        resolve(border);
+      } catch (error) {
+        reject(error);
+      }
+    });
+  },
 };

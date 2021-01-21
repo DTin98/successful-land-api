@@ -80,4 +80,26 @@ module.exports = {
       }
     });
   },
+  addOneRateArea: async (data, params, query) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        let area = await Area.findOne({ _id: data.areaId });
+        if (!area) reject(new Error("area is not existed"));
+
+        await User.updateOne(
+          {
+            $or: [{ username: data.username }, { email: data.email }],
+          },
+          { $addToSet: { favoriteAreas: data.areaId } }
+        )
+          .lean()
+          .exec()
+          .then((result) => {
+            resolve(result);
+          });
+      } catch (error) {
+        reject(error);
+      }
+    });
+  },
 };

@@ -4,11 +4,11 @@
  * @apiGroup utilitieRoutes
  *
  * @apiParam (Query string) {String} _limit Giới hạn tiện ích trả về.
- * @apiParam (Query string) {String} area_id ID Area.
+ * @apiParam (Query string) {String} border_id ID Border.
  * @apiParam (Query string) {String} category Tên category.
  *
  * @apiParamExample {json} Request-Example:
- *	http://175.41.154.174:4000/v1/utilities/search?_limit=5&area_id=5f9ec4e8bfeb451c39403324&category=C%C3%A1c%20c%C3%A2y%20ATM
+ *	http://175.41.154.174:4000/v1/utilities/search?_limit=5&border_id=5f9ec4e8bfeb451c39403324&category=C%C3%A1c%20c%C3%A2y%20ATM
  *
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
@@ -39,11 +39,11 @@
  * @apiName countArea
  * @apiGroup utilitieRoutes
  *
- * @apiParam (Query string) {String} area_id ID Area.
+ * @apiParam (Query string) {String} border_id ID Border.
  * @apiParam (Query string) {String} category Tên category.
  *
  * @apiParamExample {json} Request-Example:
- *     http://175.41.154.174:4000/v1/utilities/count?area_id=5f9ec4e8bfeb451c39403324&category=C%C3%A1c%20c%C3%A2y%20ATM
+ *     http://175.41.154.174:4000/v1/utilities/count?border_id=5f9ec4e8bfeb451c39403324&category=C%C3%A1c%20c%C3%A2y%20ATM
  *
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
