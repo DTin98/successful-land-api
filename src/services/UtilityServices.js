@@ -54,7 +54,7 @@ module.exports = {
       let utilities = [];
       try {
         if (area_id) {
-          let border = await BorderServices.findOneByArea(data, params, query);
+          let border = await BorderServices.findOneByBorder(data, params, query);
           if (!border) throw new Error("border is not found");
           else {
             db_query.gps = { $geoWithin: { $geometry: border.geometry } };
