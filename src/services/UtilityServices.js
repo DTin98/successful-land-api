@@ -22,7 +22,12 @@ module.exports = {
             db_query.gps = { $geoWithin: { $geometry: border.geometry } };
           }
         } else if (borders) {
-          borders = borders.split(", ");
+          borders = borders.split(",");
+          //borders.splice(1);
+          //console.log(borders1);
+          //console.log(borders[1]);
+          //console.log(typeof(borders[1]));
+          
           db_query.gps = {
             $geoWithin: {
               $box: [
@@ -32,6 +37,9 @@ module.exports = {
             },
           };
         }
+
+        // [parseFloat(borders[1]), parseFloat(borders[0])],
+        //         [parseFloat(borders[3]), parseFloat(borders[2])],
 
         utilities = Utility.find(db_query)
           .limit(_limit)
@@ -60,7 +68,7 @@ module.exports = {
             db_query.gps = { $geoWithin: { $geometry: border.geometry } };
           }
         } else if (borders) {
-          borders = borders.split(", ");
+          borders = borders.split(",");
           db_query.gps = {
             $geoWithin: {
               $box: [
