@@ -43,7 +43,7 @@ module.exports = {
 
         utilities = Utility.find(db_query)
           .limit(_limit)
-          .select("hash gps category address")
+          .select("hash gps category address title")
           .lean();
         resolve(utilities);
       } catch (error) {
