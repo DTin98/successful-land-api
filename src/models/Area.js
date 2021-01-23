@@ -13,6 +13,13 @@ const AreaSchema = new Schema(
       ref: "border",
       select: false,
     },
+    rate:[
+      {
+        username: { type: String, ref: "User", select: false },
+        review_text: String,
+      }
+    ],
+
   },
   {
     collection: "areas",

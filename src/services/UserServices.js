@@ -86,12 +86,16 @@ module.exports = {
         let area = await Area.findOne({ _id: data.areaId });
         if (!area) reject(new Error("area is not existed"));
 
-        await User.updateOne(
-          {
-            $or: [{ username: data.username }, { email: data.email }],
-          },
-          { $addToSet: { favoriteAreas: data.areaId } }
-        )
+        await Area.updateOne({
+          _id: new ObjectId(data.areaId),
+          },{
+              $addToSet:{ rate:
+                  {
+                    username: data.username,
+                    review_text: data.review_text,
+                  }
+              }
+          })
           .lean()
           .exec()
           .then((result) => {
