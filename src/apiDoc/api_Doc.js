@@ -54,6 +54,31 @@
  */
 
 /**
+ * @api {post} /v1/areas/addRate Thêm đánh giá khu vực
+ * @apiName addRate
+ * @apiGroup areaRoutes
+ *
+ * @apiParam {String} username Truyền username.
+ * @apiParam {String} areaId Truyền AreaID.
+ * @apiParam {String} review_text Truyền Text Review User.
+
+ * @apiParamExample {json} Request-Example:
+ *     http://175.41.154.174:4000/v1/areas/addRate
+ *Post
+	username: hien
+	areaId: 5f9eb794bfeb451c39400633
+	review_text: canh dep
+	
+ *
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *    {
+    "ok": true
+}
+ *
+ */
+
+/**
  * @api {post} /v1/areas/deleteFavorite Xóa khu vực yêu thích
  * @apiName deleteFavorite
  * @apiGroup areaRoutes
