@@ -5,10 +5,11 @@
  *
  * @apiParam (Query string) {String} _limit Giới hạn tiện ích trả về.
  * @apiParam (Query string) {String} border_id ID Border.
+ * @apiParam (Query string) {String} page Phân trang.
  * @apiParam (Query string) {String} category nhà hàng, giải trí, mua sắm, cuộc sống về đêm, làm đẹp, ẩm thực đường phố, sức khỏe, giáo dục, cafe, Các cây ATM, Tài chính, Khách sạn và chỗ ở, du lịch, dịch vụ, giao thông, thể thao, tổ chức.
  *
  * @apiParamExample {json} Request-Example:
- *	http://175.41.154.174:4000/v1/utilities/search?_limit=5&border_id=5f9ec4e8bfeb451c39403324&category=C%C3%A1c%20c%C3%A2y%20ATM
+ *	http://175.41.154.174:4000/v1/utilities/search?_limit=5&border_id=5ff7f56a15b2b03644824b4e&category=C%C3%A1c%20c%C3%A2y%20ATM&page=2
  *
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
@@ -23,10 +24,11 @@
  *
  * @apiParam (Query string) {String} _limit Giới hạn tiện ích trả về.
  * @apiParam (Query string) {String} border tọa độ 2 điểm hình chữ nhật trên màn hình.
+ * @apiParam (Query string) {String} page Phân trang.
  * @apiParam (Query string) {String} category nhà hàng, giải trí, mua sắm, cuộc sống về đêm, làm đẹp, ẩm thực đường phố, sức khỏe, giáo dục, cafe, Các cây ATM, Tài chính, Khách sạn và chỗ ở, du lịch, dịch vụ, giao thông, thể thao, tổ chức.
  *
  * @apiParamExample {json} Request-Example:
- *     http://175.41.154.174:4000/v1/utilities/search?_limit=5&border=10.797928,106.605149,10.811585,106.626574&category=C%C3%A1c%20c%C3%A2y%20ATM
+ *     http://175.41.154.174:4000/v1/utilities/search?_limit=5&border=10.797928,106.605149,10.811585,106.626574&category=C%C3%A1c%20c%C3%A2y%20ATM&page=2
  *
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK

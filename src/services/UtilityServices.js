@@ -8,16 +8,19 @@ module.exports = {
   search: async (data, params, query) => {
     let _limit = +query._limit || 0;
     let borders = query.borders || null;
-    let area_id = query.border_id || null;
+    let border_id = query.border_id || null;
+    let page = query.page;
     let db_query = {};
     db_query.category = query.category;
 
     return new Promise(async (resolve, reject) => {
       let utilities = [];
       try {
-        if (area_id) {
+        if (border_id) {
           let border = await BorderServices.findOneByBorder(data, params, query);
-          if (!border) throw new Error("border is not found");
+
+          if (!border) 
+              throw new Error("border is not found");
           else {
             db_query.gps = { $geoWithin: { $geometry: border.geometry } };
           }
@@ -38,14 +41,27 @@ module.exports = {
           };
         }
 
-        // [parseFloat(borders[1]), parseFloat(borders[0])],
-        //         [parseFloat(borders[3]), parseFloat(borders[2])],
+        //find utilities
+        if(page)
+        {
+            page = parseInt(page);
+            var skip = (page - 1)*_limit;
 
-        utilities = Utility.find(db_query)
+            utilities = Utility.find(db_query)
+            .skip(skip)
+            .limit(_limit)
+            .select("hash gps category address title")
+            .lean();
+          resolve(utilities);
+        }
+        else{
+          utilities = Utility.find(db_query)
           .limit(_limit)
           .select("hash gps category address title")
           .lean();
         resolve(utilities);
+        }
+       
       } catch (error) {
         reject(error);
       }
