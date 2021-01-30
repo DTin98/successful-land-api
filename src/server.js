@@ -10,6 +10,13 @@ const path = require("path");
 const compression = require("compression"); //gzip
 const logMiddleware = require("./middlewares/logMiddleware");
 
+
+//Serve apiDoc
+app.use(express.static('public'));
+app.get('/apidoc', (req,res)=>{
+  res.sendFile(__dirname + '/../public/index.html');
+})
+
 app.use(logMiddleware);
 app.use(cors());
 app.use(bodyParser.json());

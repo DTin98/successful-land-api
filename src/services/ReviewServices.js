@@ -114,7 +114,7 @@ module.exports = {
     });
   },
 
-  getReviewTextbByArea: async (data, params, query) => {
+  getReviewTextByArea: async (data, params, query) => {
     return new Promise(async (resolve, reject) => {
       try {
         let ketqua = ReviewTextModel.find({
@@ -128,7 +128,7 @@ module.exports = {
     });
   },
 
-  getReviewTextbByUser: async (data, params, query) => {
+  getReviewTextByUser: async (data, params, query) => {
     return new Promise(async (resolve, reject) => {
       try {
         let ketqua = ReviewTextModel.find({
