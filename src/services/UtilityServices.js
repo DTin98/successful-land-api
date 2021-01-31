@@ -4,6 +4,51 @@ const BorderServices = require("../services/BorderServices");
 const { ObjectId } = require("mongoose").Types;
 const _ = require("lodash");
 
+var chu_category
+
+var xuLycategory = (so_category) =>{
+  if(so_category == 1)
+    {
+      chu_category = {$in:["Ẩm thực đường phố","Nhà hàng","Café"]}
+    }
+    if(so_category == 2)
+    {
+      chu_category = {$in:["Café","Cuộc sống về đêm","Giải trí"]}
+    }
+    if(so_category == 3)
+    {
+      chu_category = {$in:["Giải trí","Làm đẹp","Thể thao"]}
+    }
+    if(so_category == 4)
+    {
+      chu_category = {$in:["Các cây ATM","Tài chính"]}
+    }
+    if(so_category == 5)
+    {
+      chu_category = {$in:["Sức khỏe"]}
+    }
+    if(so_category == 6)
+    {
+      chu_category = {$in:["Khách sạn và chỗ ở"]}
+    }
+    if(so_category == 7)
+    {
+      chu_category = {$in:["Mua sắm"]}
+    }
+    if(so_category == 8)
+    {
+      chu_category = {$in:["Dịch vụ","Giao thông"]}
+    }
+    if(so_category == 9)
+    {
+      chu_category = {$in:["Du lịch","Thắng cảnh","Tổ chức"]}
+    }
+    if(so_category == 10)
+    {
+      chu_category = {$in:["Giáo dục"]}
+    }
+}
+
 module.exports = {
   search: async (data, params, query) => {
     let _limit = +query._limit || 0;
@@ -11,7 +56,12 @@ module.exports = {
     let border_id = query.border_id || null;
     let page = query.page;
     let db_query = {};
-    db_query.category = query.category;
+
+    so_category = parseInt(query.category);
+    // hàm lấy ra category
+    xuLycategory(so_category);
+    
+    db_query.category = chu_category;
 
     return new Promise(async (resolve, reject) => {
       let utilities = [];
@@ -72,7 +122,11 @@ module.exports = {
     let borders = query.borders || null;
     let area_id = query.border_id || null;
     let db_query = {};
-    db_query.category = query.category;
+    so_category = parseInt(query.category);
+    // hàm lấy ra category
+    xuLycategory(so_category);
+    
+    db_query.category = chu_category;
 
     return new Promise(async (resolve, reject) => {
       let utilities = [];

@@ -6,10 +6,22 @@
  * @apiParam (Query string) {String} _limit Giới hạn tiện ích trả về.
  * @apiParam (Query string) {String} border_id ID Border.
  * @apiParam (Query string) {String} page Phân trang.
- * @apiParam (Query string) {String} category nhà hàng, giải trí, mua sắm, cuộc sống về đêm, làm đẹp, ẩm thực đường phố, sức khỏe, giáo dục, cafe, Các cây ATM, Tài chính, Khách sạn và chỗ ở, du lịch, dịch vụ, giao thông, thể thao, tổ chức.
+ * @apiParam (Query string) {String} category 
+- restaurant : category=1<br>
+- coffee: category=2<br>
+- entertaiment: category=3<br>
+- atm_bank: category=4<br>
+- hospital: category=5<br>
+- hotel_travel: category=6<br>
+- store_supermarket: category=7<br>
+- services: category=8<br>
+- place: category=9<br>
+- education: category=10<br>
+Giả sử muốn tìm tiện ích nhà hàng thì:
+- http://175.41.154.174:4000/v1/utilities/search?_limit=5&border_id=5ff7f56a15b2b03644824b4e&category=1&page=1
  *
  * @apiParamExample {json} Request-Example:
- *	http://175.41.154.174:4000/v1/utilities/search?_limit=5&border_id=5ff7f56a15b2b03644824b4e&category=C%C3%A1c%20c%C3%A2y%20ATM&page=2
+ *	http://175.41.154.174:4000/v1/utilities/search?_limit=5&border_id=5ff7f56a15b2b03644824b4e&category=1&page=1
  *
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
@@ -25,10 +37,22 @@
  * @apiParam (Query string) {String} _limit Giới hạn tiện ích trả về.
  * @apiParam (Query string) {String} border tọa độ 2 điểm hình chữ nhật trên màn hình.
  * @apiParam (Query string) {String} page Phân trang.
- * @apiParam (Query string) {String} category nhà hàng, giải trí, mua sắm, cuộc sống về đêm, làm đẹp, ẩm thực đường phố, sức khỏe, giáo dục, cafe, Các cây ATM, Tài chính, Khách sạn và chỗ ở, du lịch, dịch vụ, giao thông, thể thao, tổ chức.
+ * @apiParam (Query string) {String} category 
+- restaurant : category=1<br>
+- coffee: category=2<br>
+- entertaiment: category=3<br>
+- atm_bank: category=4<br>
+- hospital: category=5<br>
+- hotel_travel: category=6<br>
+- store_supermarket: category=7<br>
+- services: category=8<br>
+- place: category=9<br>
+- education: category=10<br>
+Giả sử muốn tìm tiện ích nhà hàng thì chạy:
+- http://175.41.154.174:4000/v1/utilities/search?_limit=5&borders=10.797928,106.605149,10.811585,106.626574&category=1&page=1
  *
  * @apiParamExample {json} Request-Example:
- *     http://175.41.154.174:4000/v1/utilities/search?_limit=5&border=10.797928,106.605149,10.811585,106.626574&category=C%C3%A1c%20c%C3%A2y%20ATM&page=2
+ *     http://175.41.154.174:4000/v1/utilities/search?_limit=5&borders=10.797928,106.605149,10.811585,106.626574&category=Ẩm thực đường phố&page=1
  *
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
@@ -42,10 +66,23 @@
  * @apiGroup utilitieRoutes
  *
  * @apiParam (Query string) {String} border_id ID Border.
- * @apiParam (Query string) {String} category nhà hàng, giải trí, mua sắm, cuộc sống về đêm, làm đẹp, ẩm thực đường phố, sức khỏe, giáo dục, cafe, Các cây ATM, Tài chính, Khách sạn và chỗ ở, du lịch, dịch vụ, giao thông, thể thao, tổ chức.
+ * @apiParam (Query string) {String} category 
+- restaurant : category=1<br>
+- coffee: category=2<br>
+- entertaiment: category=3<br>
+- atm_bank: category=4<br>
+- hospital: category=5<br>
+- hotel_travel: category=6<br>
+- store_supermarket: category=7<br>
+- services: category=8<br>
+- place: category=9<br>
+- education: category=10<br>
+Giả sử muốn tìm tiện ích nhà hàng thì chạy:
+- http://175.41.154.174:4000/v1/utilities/count?border_id=5ff7f56a15b2b03644824b4e&category=1
+
  *
  * @apiParamExample {json} Request-Example:
- *     http://175.41.154.174:4000/v1/utilities/count?border_id=5f9ec4e8bfeb451c39403324&category=C%C3%A1c%20c%C3%A2y%20ATM
+ *     http://175.41.154.174:4000/v1/utilities/count?border_id=5ff7f56a15b2b03644824b4e&category=1
  *
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
@@ -59,10 +96,23 @@
  * @apiGroup utilitieRoutes
  *
  * @apiParam (Query string) {String} border tọa độ 2 điểm hình chữ nhật trên màn hình.
- * @apiParam (Query string) {String} category nhà hàng, giải trí, mua sắm, cuộc sống về đêm, làm đẹp, ẩm thực đường phố, sức khỏe, giáo dục, cafe, Các cây ATM, Tài chính, Khách sạn và chỗ ở, du lịch, dịch vụ, giao thông, thể thao, tổ chức.
+ * @apiParam (Query string) {String} category 
+- restaurant : category=1<br>
+- coffee: category=2<br>
+- entertaiment: category=3<br>
+- atm_bank: category=4<br>
+- hospital: category=5<br>
+- hotel_travel: category=6<br>
+- store_supermarket: category=7<br>
+- services: category=8<br>
+- place: category=9<br>
+- education: category=10<br>
+Giả sử muốn tìm tiện ích nhà hàng thì chạy:
+- http://175.41.154.174:4000/v1/utilities/count?borders=10.797928,106.605149,10.811585,106.626574&category=1
+
  *
  * @apiParamExample {json} Request-Example:
- *    http://175.41.154.174:4000/v1/utilities/count?border=10.797928,106.605149,10.811585,106.626574&category=C%C3%A1c%20c%C3%A2y%20ATM
+ *    http://175.41.154.174:4000/v1/utilities/count?borders=10.797928,106.605149,10.811585,106.626574&category=1
  *
  *
  * @apiSuccessExample Success-Response:
