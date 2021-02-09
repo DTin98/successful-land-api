@@ -34,7 +34,23 @@ let errorResponse = (statusCode) => {
   return findErrorMessage(statusCode);
 };
 
+/**
+ * Error Response.
+ * @param {Response} res - Send error response
+ * @param {number} statusCode - Error Status Code
+ * @param {string} message - Error message Code
+ * @param {string} data - Error data Code
+ */
+let customErrorResponse = (statusCode, message, data) => {
+  return {
+    status: statusCode,
+    message: message,
+    data: data,
+  };
+};
+
 module.exports = {
   errorResponse,
   successResponse,
+  customErrorResponse,
 };

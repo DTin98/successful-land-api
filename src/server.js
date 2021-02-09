@@ -7,7 +7,17 @@ const app = express();
 const pack = require("../package");
 const mongoose = require("mongoose");
 const path = require("path");
+const compression = require("compression"); //gzip
+const logMiddleware = require("./middlewares/logMiddleware");
 
+
+//Serve apiDoc
+app.use(express.static('public'));
+app.get('/apidoc', (req,res)=>{
+  res.sendFile(__dirname + '/../public/index.html');
+})
+
+app.use(logMiddleware);
 app.use(cors());
 app.use(bodyParser.json());
 app.use(
@@ -15,10 +25,6 @@ app.use(
     extended: false,
   })
 );
-
-app.get("/", (req, res) => {
-  res.send("Hello");
-});
 
 app.use(require("express-status-monitor")());
 
@@ -47,13 +53,29 @@ const start = () =>
 
 dbConnection = () => {
   // When you try to connect database please comment bellow start method
-  start();
+  // start();
 
   // MONGO database connection start
-
   const databaseConfig = config.get(`${mode}.database`);
-
-  //do connect
+  mongoose.connect(
+    `mongodb+srv://${databaseConfig.username}:${databaseConfig.password}@${databaseConfig.host}/${databaseConfig.database}`,
+    {
+      useNewUrlParser: "true",
+      useUnifiedTopology: true,
+      serverSelectionTimeoutMS: 30000,
+    }
+  );
+  mongoose.connection.on("error", (err) => {
+    console.log("err", err);
+  });
+  mongoose.connection.on("connected", (err, res) => {
+    start();
+  });
 };
 
 dbConnection();
+
+var dirname = __dirname;
+module.exports = {
+    dir: dirname,
+  };

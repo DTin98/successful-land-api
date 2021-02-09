@@ -1,0 +1,62 @@
+/**
+ * @api {get} /v1/areas/search Tìm kiếm khu vực
+ * @apiName search
+ * @apiGroup areaRoutes
+ *
+ * @apiParam (Query string) {String} _q Tên khu vực người dùng nhập.
+ * @apiParamExample {json} Request-Example:
+ *     http://175.41.154.174:4000/v1/areas/search?_q=hồ
+ *
+ *
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *    [{"_id":"5f9eb7a1bfeb451c39400665","fullAddress":"Hồ Chí Minh","type":1,"provinceCode":"ho-chi-minh","districtCode":"","villageCode":""},{"_id":"5f9eb7acbfeb451c39400691","fullAddress":"Huyện Hồng Dân, Bạc Liêu","type":2,"provinceCode":"bac-lieu","districtCode":"huyen-hong-dan","villageCode":""},{"_id":"5f9eb7e5bfeb451c39400772","fullAddress":"Thị xã Hồng Lĩnh, Hà Tĩnh","type":2,"provinceCode":"ha-tinh","districtCode":"thi-xa-hong-linh","villageCode":""},{"_id":"5f9eb7ffbfeb451c394007dc","fullAddress":"Huyện Sìn Hồ, Lai Châu","type":2,"provinceCode":"lai-chau","districtCode":"huyen-sin-ho","villageCode":""},{"_id":"5f9eb7fcbfeb451c394007d0","fullAddress":"Huyện Ngọc Hồi, Kon Tum","type":2,"provinceCode":"kon-tum","districtCode":"huyen-ngoc-hoi","villageCode":""}]
+ *
+ */
+
+ /**
+
+/**
+ * @api {post} v1/review/addReviewPoint Thêm điểm user review
+ * @apiName addReviewPoint
+ * @apiGroup reviewRoutes
+ *
+ * @apiParam {Number} point Điểm người dùng nhập.
+ * @apiParam {String} khongkhi_text Chất lượng không khí người dùng chọn.
+ * @apiParam {String} khongkhi_point Điểm chất lượng không khí người dùng chọn.
+ * @apiParam {String} giaothong_text Chất lượng giao thông người dùng chọn.
+ * @apiParam {String} giaothong_point Điểm giao thông người dùng chọn.
+ * @apiParam {String} ngap_text Chất lượng ngập người dùng chọn.
+ * @apiParam {String} ngap_point Điểm chất lượng ngập người dùng chọn.
+ * @apiParam {String} anninh_text Chất lượng an ninh người dùng chọn.
+ * @apiParam {String} anninh_point Điểm chất lượng an ninh người dùng chọn.
+*
+ * @apiHeader {String} Authorization Token người dùng.
+ * @apiHeaderExample {json} Header-Example:
+      {
+        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDA1M2MxNzYwNzUyNTI0MzQxZjAxMDciLCJ1c2VybmFtZSI6ImhpZW4iLCJpYXQiOjE2MTEzOTMxNDIsImV4cCI6MTYxMTQyOTE0Mn0.oh1iAOVbmy9D_NAz3hJZJwDkzzr-1g0oaJBuLXavEGY'
+      }
+
+ * @apiParamExample {json} Request-Example:
+ *     http://175.41.154.174:4000/v1/review/addReviewPoint
+ *Post
+*{
+    "point": 1,
+    "khongkhi_text": "Tốt",
+    "khongkhi_point": 4,
+    "giaothong_text": "Tốt",
+    "giaothong_point": 2,
+    "ngap_text": "Tốt",
+    "ngap_point": 4,
+    "anninh_text": "Tốt",
+    "anninh_point": 4,
+    "area_id": "5f9eb794bfeb451c39400633"
+}
+ *
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *   {
+  "ketqua": "add thanh cong"
+}
+ *
+ */

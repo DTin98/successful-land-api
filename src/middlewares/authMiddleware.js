@@ -1,13 +1,17 @@
-let jwt = require("jsonwebtoken");
+const jwt = require("jsonwebtoken");
 const reqResponse = require("../helpers/responseHandler");
-const key = "Very*S!e!c!r!e!t*";
+require("dotenv").config();
+const key = process.env.TOKEN_SECRET;
 
 module.exports = {
   checkToken,
 };
 
 function checkToken(req, res, next) {
-  let token = req.headers["x-access-token"] || req.headers["authorization"];
+  let token =
+    req.headers["x-access-token"] || req.headers["authorization"] || "";
+  TokenArray = token.split(" ");
+  token = TokenArray[1];
   if (token) {
     jwt.verify(
       token,
@@ -19,7 +23,7 @@ function checkToken(req, res, next) {
         if (err) {
           return res.status(414).send(reqResponse.errorResponse(414));
         } else {
-          if (key === "Very*S!e!c!r!e!t*") {
+          if (key === process.env.TOKEN_SECRET) {
             decoded.isAdminUser = false;
           } else {
             decoded.isAdminUser = true;
