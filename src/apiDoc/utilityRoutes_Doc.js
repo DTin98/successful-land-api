@@ -1,7 +1,7 @@
 /**
- * @api {get} /v1/utilitie/search Tìm kiếm tiện ích trong 1 khu vực
+ * @api {get} /v1/utilities/search Tìm kiếm tiện ích trong 1 khu vực
  * @apiName searchArea
- * @apiGroup utilitieRoutes
+ * @apiGroup utilitiesRoutes
  *
  * @apiParam (Query string) {String} _limit Giới hạn tiện ích trả về.
  * @apiParam (Query string) {String} border_id ID Border.
@@ -30,9 +30,9 @@ Giả sử muốn tìm tiện ích nhà hàng thì:
  */
 
 /**
- * @api {get} /v1/utilitie/search Tìm kiếm tiện ích theo 1 border
+ * @api {get} /v1/utilities/search Tìm kiếm tiện ích theo 1 border
  * @apiName searchBorder
- * @apiGroup utilitieRoutes
+ * @apiGroup utilitiesRoutes
  *
  * @apiParam (Query string) {String} _limit Giới hạn tiện ích trả về.
  * @apiParam (Query string) {String} border tọa độ 2 điểm hình chữ nhật trên màn hình.
@@ -52,7 +52,7 @@ Giả sử muốn tìm tiện ích nhà hàng thì chạy:
 - http://175.41.154.174:4000/v1/utilities/search?_limit=5&borders=10.797928,106.605149,10.811585,106.626574&category=1&page=1
  *
  * @apiParamExample {json} Request-Example:
- *     http://175.41.154.174:4000/v1/utilities/search?_limit=5&borders=10.797928,106.605149,10.811585,106.626574&category=Ẩm thực đường phố&page=1
+ *     http://175.41.154.174:4000/v1/utilities/search?_limit=5&borders=10.797928,106.605149,10.811585,106.626574&category=1&page=1
  *
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
@@ -61,9 +61,9 @@ Giả sử muốn tìm tiện ích nhà hàng thì chạy:
  */
 
 /**
- * @api {get} /v1/utilitie/count Đếm số tiện ích trong 1 khu vực
+ * @api {get} /v1/utilities/count Đếm số tiện ích trong 1 khu vực
  * @apiName countArea
- * @apiGroup utilitieRoutes
+ * @apiGroup utilitiesRoutes
  *
  * @apiParam (Query string) {String} border_id ID Border.
  * @apiParam (Query string) {String} category 
@@ -91,9 +91,9 @@ Giả sử muốn tìm tiện ích nhà hàng thì chạy:
  */
 
 /**
- * @api {get} /v1/utilitie/count Đếm số tiện ích trong 1 border
+ * @api {get} /v1/utilities/count Đếm số tiện ích trong 1 border
  * @apiName countBorder
- * @apiGroup utilitieRoutes
+ * @apiGroup utilitiesRoutes
  *
  * @apiParam (Query string) {String} border tọa độ 2 điểm hình chữ nhật trên màn hình.
  * @apiParam (Query string) {String} category 

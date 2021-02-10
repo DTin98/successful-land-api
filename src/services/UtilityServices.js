@@ -100,14 +100,14 @@ module.exports = {
             utilities = Utility.find(db_query)
             .skip(skip)
             .limit(_limit)
-            .select("hash gps category address title")
+            .select("gps address title -_id")
             .lean();
           resolve(utilities);
         }
         else{
           utilities = Utility.find(db_query)
           .limit(_limit)
-          .select("hash gps category address title")
+          .select("gps address title -_id")
           .lean();
         resolve(utilities);
         }
@@ -170,4 +170,6 @@ module.exports = {
       }
     });
   },
+
+  
 };

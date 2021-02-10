@@ -1,20 +1,143 @@
 /**
- * @api {get} v1/price/getBieuDo Lấy dữ liệu biểu đồ giá
- * @apiName getBieuDo
- * @apiGroup BieuDoRoutes
+ * @api {get} price Tìm giá trung bình của khu vực
+ * @apiName priceAVSeach
+ * @apiGroup priceRoutes
  *
- * @apiParam (Query string) {String} time Khoảng thời gian năm người dùng chọn.
- * @apiParam (Query string) {String} provinceCode thành phố.
- * @apiParam (Query string) {String} districtCode Quận.
- * @apiParam (Query string) {String} villageCode Phường.
- * @apiParam (Query string) {String} category Thể loại đăng tin rao bán.
+ * @apiParam (Query string) {String} type 1,2,3 là tỉnh, huyện, hoặc xã (type của areas)
+ * @apiParam (Query string) {String} provinceCode mã Tỉnh
+- VD: ho-chi-minh, tien-giang,… 
+ * @apiParam (Query string) {String} districtCode mã quận/huyện
+- VD: quan-1, huyen-binh-chanh,…
+ * @apiParam (Query string) {String} villageCode mã xã/phường
+- VD: phuong-7, xa-tan-phu,… 
+ * @apiParam (Query string) {String} category_id loại bất động sản (từ 0 -> 15)
+- VD: id của mấy cái loại như "Bán căn hộ chung cư" 
+có thể bằng "all" nghĩa là tất cả các loại bất động sản
+ * @apiParam (Query string) {String} year năm cần thống kê về giá (hiện tại year nằm trong khoản 2015 - 2019)
+- VD: year = "all", thì giá sẽ được xuất theo trung bình của các năm: 2015,2016,2017,2018,2019 
+  nếu 2015 <= year <= 2019, thì giá sẽ được xuất theo trung bình tháng của năm đó: (12 cột tương ứng 12 tháng) 
 
  * @apiParamExample {json} Request-Example:
- *     http://175.41.154.174:4000/v1/price/getBieuDo?time=2019&provinceCode=ho-chi-minh&districtCode=quan-1&villageCode=phuong-da-kao&category=Bán căn hộ chung cư
+ *     http://47.241.7.27:5000/price?type=3&provinceCode=ho-chi-minh&districtCode=quan-3&villageCode=phuong-06&year=2019&category_id=1&fbclid=IwAR1BGxCyjsLz9-u5EbCrneoMy8Hspns1v7GFLGvv8ARpvJU1weoenSNwDXY
  *
  *
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
- *    [{"_id":"600ff7e4110a4816609eef62","time":"1/2019","price":8666666.667000001,"provinceCode":"ho-chi-minh","districtCode":"quan-1","villageCode":"phuong-da-kao","category":"Bán căn hộ chung cư","unit":"vnđ/m^2","year":2019},{"_id":"600ff7e4110a4816609eef63","time":"2/2019","price":40384057.970000006,"provinceCode":"ho-chi-minh","districtCode":"quan-1","villageCode":"phuong-da-kao","category":"Bán căn hộ chung cư","unit":"vnđ/m^2","year":2019},{"_id":"600ff7e4110a4816609eef64","time":"3/2019","price":135661822.85290325,"provinceCode":"ho-chi-minh","districtCode":"quan-1","villageCode":"phuong-da-kao","category":"Bán căn hộ chung cư","unit":"vnđ/m^2","year":2019},{"_id":"600ff7e4110a4816609eef65","time":"4/2019","price":137320058.90471265,"provinceCode":"ho-chi-minh","districtCode":"quan-1","villageCode":"phuong-da-kao","category":"Bán căn hộ chung cư","unit":"vnđ/m^2","year":2019},{"_id":"600ff7e4110a4816609eef66","time":"5/2019","price":119886312.19000001,"provinceCode":"ho-chi-minh","districtCode":"quan-1","villageCode":"phuong-da-kao","category":"Bán căn hộ chung cư","unit":"vnđ/m^2","year":2019},{"_id":"600ff7e4110a4816609eef67","time":"6/2019","price":108585427.73789473,"provinceCode":"ho-chi-minh","districtCode":"quan-1","villageCode":"phuong-da-kao","category":"Bán căn hộ chung cư","unit":"vnđ/m^2","year":2019},{"_id":"600ff7e4110a4816609eef68","time":"7/2019","price":110422582.39730771,"provinceCode":"ho-chi-minh","districtCode":"quan-1","villageCode":"phuong-da-kao","category":"Bán căn hộ chung cư","unit":"vnđ/m^2","year":2019},{"_id":"600ff7e4110a4816609eef69","time":"8/2019","price":89200627.3746154,"provinceCode":"ho-chi-minh","districtCode":"quan-1","villageCode":"phuong-da-kao","category":"Bán căn hộ chung cư","unit":"vnđ/m^2","year":2019},{"_id":"600ff7e4110a4816609eef6a","time":"9/2019","price":139239077.91279998,"provinceCode":"ho-chi-minh","districtCode":"quan-1","villageCode":"phuong-da-kao","category":"Bán căn hộ chung cư","unit":"vnđ/m^2","year":2019},{"_id":"600ff7e4110a4816609eef6b","time":"10/2019","price":123043834.19000001,"provinceCode":"ho-chi-minh","districtCode":"quan-1","villageCode":"phuong-da-kao","category":"Bán căn hộ chung cư","unit":"vnđ/m^2","year":2019},{"_id":"600ff7e4110a4816609eef6c","time":"11/2019","price":147683379.83166668,"provinceCode":"ho-chi-minh","districtCode":"quan-1","villageCode":"phuong-da-kao","category":"Bán căn hộ chung cư","unit":"vnđ/m^2","year":2019},{"_id":"600ff7e4110a4816609eef6d","time":"12/2019","price":107301587.3,"provinceCode":"ho-chi-minh","districtCode":"quan-1","villageCode":"phuong-da-kao","category":"Bán căn hộ chung cư","unit":"vnđ/m^2","year":2019}]
+ *    [
+    {
+        "province": "Hồ Chí Minh",
+        "district": "Quận 3",
+        "village": "Phường 06",
+        "provinceCode": "ho-chi-minh",
+        "districtCode": "quan-3",
+        "villageCode": "phuong-06",
+        "category": [
+            {
+                "name": "Bán nhà biệt thự, liền kề",
+                "unit": "vnđ/m^2",
+                "average_price_year": [
+                    {
+                        "year": 2019,
+                        "price": 200114537.54376927,
+                        "average_price_month": {
+                            "1": 0,
+                            "2": 0,
+                            "3": 0,
+                            "4": 0,
+                            "5": 192640362.14598328,
+                            "6": 103357673.30948731,
+                            "7": 239377192.98245612,
+                            "8": 183955033.2141032,
+                            "9": 318819858.49054945,
+                            "10": 185000000,
+                            "11": 0,
+                            "12": 0
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+]
+ *
+ */
+
+/**
+ * @api {get} price_category Tìm kiếm thể loại bất động sản
+ * @apiName price_category
+ * @apiGroup priceRoutes
+ *
+ * @apiParamExample {json} Request-Example:
+ *     http://47.241.7.27:5000/price_category
+ *
+ *
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *    [
+    {
+        "id": 8,
+        "name": "Cho thuê căn hộ chung cư"
+    },
+    {
+        "id": 0,
+        "name": "Bán căn hộ chung cư"
+    },
+    {
+        "id": 5,
+        "name": "Bán đất"
+    },
+    {
+        "id": 9,
+        "name": "Cho thuê cửa hàng, ki ốt"
+    },
+    {
+        "id": 12,
+        "name": "Cho thuê nhà riêng"
+    },
+    {
+        "id": 11,
+        "name": "Cho thuê nhà mặt phố"
+    },
+    {
+        "id": 7,
+        "name": "Bán loại bất động sản khác"
+    },
+    {
+        "id": 2,
+        "name": "Bán nhà mặt phố"
+    },
+    {
+        "id": 15,
+        "name": "Cho thuê loại bất động sản khác"
+    },
+    {
+        "id": 3,
+        "name": "Bán nhà riêng"
+    },
+    {
+        "id": 4,
+        "name": "Bán trang trại, khu nghỉ dưỡng"
+    },
+    {
+        "id": 10,
+        "name": "Cho thuê kho, nhà xưởng, đất"
+    },
+    {
+        "id": 6,
+        "name": "Bán đất nền dự án"
+    },
+    {
+        "id": 13,
+        "name": "Cho thuê nhà trọ, phòng trọ"
+    },
+    {
+        "id": 1,
+        "name": "Bán nhà biệt thự, liền kề"
+    },
+    {
+        "id": 14,
+        "name": "Cho thuê văn phòng"
+    }
+]
  *
  */
