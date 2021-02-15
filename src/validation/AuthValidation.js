@@ -14,7 +14,7 @@ module.exports = {
       body("password", "password must be string").isString(),
     ];
   },
-  login: () => {
+  login: (req, res) => {
     return [
       body("username", "username is required!").not().isEmpty(),
       body("username", "username must be string").isString(),
