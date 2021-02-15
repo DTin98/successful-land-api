@@ -61,7 +61,6 @@ module.exports = {
       return res.status(402).send(errors);
     }
     let data = req.body;
-    console.log("🚀 ~ file: authController.js ~ line 64 ~ login: ~ data", data);
     let params = req.params;
     let query = req.query;
 
