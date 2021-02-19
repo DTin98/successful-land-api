@@ -2,6 +2,7 @@ const reqResponse = require("../../helpers/responseHandler");
 const { validationResult } = require("express-validator");
 const AreaServices = require("../../services/AreaServices");
 const userServices = require("../../services/UserServices");
+const axios = require("axios");
 const _ = require("lodash");
 
 module.exports = {
@@ -15,14 +16,36 @@ module.exports = {
     let query = req.query;
 
     try {
-      let areas = await AreaServices.search(data, params, query);
+      let areas = [];
+      let response = await axios.post(
+        "http://vietnamland.me:8000/search/autocomplete/_search",
+        {
+          size: query._limit || 5,
+          query: {
+            multi_match: {
+              query: query._q,
+              type: "bool_prefix",
+              fields: [
+                "fullAddress",
+                "fullAddressSearchable",
+                "fullAddressSearchable._2gram",
+                "fullAddressSearchable._3gram",
+              ],
+            },
+          },
+        }
+      );
+      if (response.status === 200)
+        response.data.hits.hits.map((v) => {
+          areas.push({
+            fullAddress: v._source.fullAddress,
+            border: v._source.border.$oid,
+          });
+        });
+
       return res.status(200).send(areas);
     } catch (error) {
-      return res
-        .status(500)
-        .send(
-          reqResponse.customErrorResponse(500, "Server Error", error.message)
-        );
+      return res.status(500).send(error);
     }
   },
   getByBorder: async (req, res) => {

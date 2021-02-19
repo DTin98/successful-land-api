@@ -6,9 +6,11 @@ const UserSchema = new Schema(
     username: { type: String, required: true },
     email: { type: String, required: true },
     password: { type: String, required: true },
-    resetPassToken: String,
     block: { type: Boolean, default: false },
     provider: { type: String, default: "local" },
+    resetPassToken: String,
+    name: String,
+    picture: String,
     favoriteAreas: [
       { type: mongoose.Schema.Types.ObjectId, ref: "Area", select: false },
     ],
