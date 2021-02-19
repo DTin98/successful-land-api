@@ -38,6 +38,7 @@ module.exports = {
       if (response.status === 200)
         response.data.hits.hits.map((v) => {
           areas.push({
+            _id: v._source.areaId,
             fullAddress: v._source.fullAddress,
             border: v._source.border.$oid,
           });
