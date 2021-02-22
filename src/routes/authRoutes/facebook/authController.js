@@ -31,6 +31,10 @@ module.exports = {
       const { id, email, first_name, last_name } = await getFacebookUserData(
         accessToken
       );
+      console.log(
+        "🚀 ~ file: authController.js ~ line 32 ~ login: ~ email",
+        email
+      );
       const user = await userServices.findOneAndUpdate(
         { $or: [{ email: email }, { username: email }] },
         {
@@ -53,12 +57,9 @@ module.exports = {
         user: user,
       });
     } catch (error) {
-      console.error(error);
       return res
         .status(500)
-        .json(
-          reqResponse.customErrorResponse(500, "Server Error", error.message)
-        );
+        .send({ success: false, message: "There are some errors" });
     }
   },
 };

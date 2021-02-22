@@ -12,6 +12,10 @@ module.exports = {
   login: async (req, res) => {
     try {
       const { tokenId } = req.body;
+      console.log(
+        "🚀 ~ file: authController.js ~ line 15 ~ login: ~ tokenId",
+        tokenId
+      );
       const ticket = await client.verifyIdToken({
         idToken: tokenId,
         audience: process.env.GOOGLE_CLIENT_ID,
