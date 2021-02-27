@@ -86,16 +86,33 @@ module.exports = {
         let area = await Area.findOne({ _id: data.areaId });
         if (!area) reject(new Error("area is not existed"));
 
-        await Area.updateOne({
-          _id: new ObjectId(data.areaId),
-          },{
-              $addToSet:{ rate:
-                  {
-                    username: data.username,
-                    review_text: data.review_text,
-                  }
-              }
-          })
+        await Area.updateOne(
+          {
+            _id: new ObjectId(data.areaId),
+          },
+          {
+            $addToSet: {
+              rate: {
+                username: data.username,
+                review_text: data.review_text,
+              },
+            },
+          }
+        )
+          .lean()
+          .exec()
+          .then((result) => {
+            resolve(result);
+          });
+      } catch (error) {
+        reject(error);
+      }
+    });
+  },
+  findOneAndUpdate: async (data, update) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        await User.findOneAndUpdate(data, update, { upsert: true })
           .lean()
           .exec()
           .then((result) => {
