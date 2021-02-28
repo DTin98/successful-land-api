@@ -1,6 +1,6 @@
 {
   "dev": {
-    "name": "Successful Land API - Dev Mode",
+    "name": "Vietnamland API - Dev Mode",
     "port": 4000,
     "mode": "development",
     "protocol": "http",

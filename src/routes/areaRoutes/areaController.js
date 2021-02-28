@@ -15,38 +15,48 @@ module.exports = {
     let params = req.params;
     let query = req.query;
 
-    try {
-      let areas = [];
-      let response = await axios.post(
-        "http://vietnamland.me:8000/search/autocomplete/_search",
-        {
-          size: query._limit || 5,
-          query: {
-            multi_match: {
-              query: query._q,
-              type: "bool_prefix",
-              fields: [
-                "fullAddress",
-                "fullAddressSearchable",
-                "fullAddressSearchable._2gram",
-                "fullAddressSearchable._3gram",
-              ],
-            },
-          },
-        }
-      );
-      if (response.status === 200)
-        response.data.hits.hits.map((v) => {
-          areas.push({
-            _id: v._source.areaId,
-            fullAddress: v._source.fullAddress,
-            border: v._source.border.$oid,
-          });
-        });
+    // try {
+    //   let areas = [];
+    //   let response = await axios.post(
+    //     "http://vietnamland.me:8000/search/autocomplete/_search",
+    //     {
+    //       size: query._limit || 5,
+    //       query: {
+    //         multi_match: {
+    //           query: query._q,
+    //           type: "bool_prefix",
+    //           fields: [
+    //             "fullAddress",
+    //             "fullAddressSearchable",
+    //             "fullAddressSearchable._2gram",
+    //             "fullAddressSearchable._3gram",
+    //           ],
+    //         },
+    //       },
+    //     }
+    //   );
+    //   if (response.status === 200)
+    //     response.data.hits.hits.map((v) => {
+    //       areas.push({
+    //         _id: v._source.areaId,
+    //         fullAddress: v._source.fullAddress,
+    //         border: v._source.border.$oid,
+    //       });
+    //     });
 
+    //   return res.status(200).send(areas);
+    // } catch (error) {
+    //   return res.status(500).send(error);
+    // }
+    try {
+      let areas = await AreaServices.search(data, params, query);
       return res.status(200).send(areas);
     } catch (error) {
-      return res.status(500).send(error);
+      return res
+        .status(500)
+        .send(
+          reqResponse.customErrorResponse(500, "Server Error", error.message)
+        );
     }
   },
   getByBorder: async (req, res) => {
