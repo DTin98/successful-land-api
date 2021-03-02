@@ -4,43 +4,25 @@ const Area = require("../../models/Area.js");
 var getArea = [];
 
 module.exports = {
-  addArea: (req, res) => {
-    var idUser = req.query.idUser;
-
-    var idAreas = req.query.idAreas;
-
-    // userModel
-    //   .find({ _id: idUser })
-    //   .then((data) => {
-    //     var temp = 0;
-    //     data[0].dsAreaLike.map((item) => {
-    //       if (item == idAreas) {
-    //         temp++;
-    //       }
-    //     });
-
-    //     if (temp == 0) {
-    //       areaModel.find({ _id: idAreas }).then((data) => {
-    //         userModel
-    //           .updateOne(
-    //             {
-    //               _id: idUser,
-    //             },
-    //             {
-    //               $push: { dsAreaLike: idAreas },
-    //             }
-    //           )
-    //           .then((data) => {
-    //             res.json("add thanh cong");
-    //           });
-    //       });
-    //     } else {
-    //       res.json("da co area trong danh sach");
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     console.log("loi:", err);
-    //   });
+  addArea: async (req, res) => {
+    const idUser = req.decoded._id;
+    const idArea = req.body.idArea;
+    const userData = await User.findOne({ _id: idUser });
+    if (userData.favoriteAreas) {
+      userData.favoriteAreas.map((area) => {
+        if (area._id === idArea)
+          return res.status(400).send({ message: "area da duoc them" });
+      });
+      const areaData = await Area.findOne({ _id: idArea });
+      await User.updateOne(
+        { _id: idUser },
+        {
+          $push: {
+            favoriteAreas: areaData,
+          },
+        }
+      );
+    }
   },
 
   deleteArea: (req, res) => {
