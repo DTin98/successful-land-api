@@ -66,6 +66,10 @@ module.exports = {
 
     try {
       await userServices.findOneUser(data, params, query).then(async (user) => {
+        console.log(
+          "🚀 ~ file: authController.js ~ line 69 ~ awaituserServices.findOneUser ~ user",
+          user
+        );
         //should update to using bcrypt hashing
         if (user) {
           const isCorrectPassword = await bcrypt.compare(

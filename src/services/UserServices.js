@@ -28,7 +28,7 @@ module.exports = {
       User.findOne({
         $or: [{ username: data.username }, { email: data.email }],
       })
-        .select("-favoriteAreas")
+        .select("-favoriteAreas +password")
         .lean()
         .exec()
         .then((user) => {
@@ -37,6 +37,18 @@ module.exports = {
         .catch((error) => {
           reject(error);
         });
+    });
+  },
+  getFavoriteArea: async (data, params, query) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        let user = await User.findOne({
+          $or: [{ username: data.username }, { email: data.email }],
+        });
+        if (user) resolve(user);
+      } catch (error) {
+        reject(error);
+      }
     });
   },
   addOneFavoriteArea: async (data, params, query) => {
@@ -49,7 +61,7 @@ module.exports = {
           {
             $or: [{ username: data.username }, { email: data.email }],
           },
-          { $addToSet: { favoriteAreas: data.areaId } }
+          { $addToSet: { favoriteAreas: area } }
         )
           .lean()
           .exec()
@@ -62,13 +74,17 @@ module.exports = {
     });
   },
   deleteOneFavoriteArea: async (data, params, query) => {
+    console.log(
+      "🚀 ~ file: UserServices.js ~ line 77 ~ deleteOneFavoriteArea: ~ data",
+      data
+    );
     return new Promise(async (resolve, reject) => {
       try {
         await User.updateOne(
           {
             $or: [{ username: data.username }, { email: data.email }],
           },
-          { $pullAll: { favoriteAreas: [data.areaId] } }
+          { $pull: { favoriteAreas: { _id: ObjectId(data.areaId) } } }
         )
           .lean()
           .exec()
@@ -76,6 +92,7 @@ module.exports = {
             resolve(user);
           });
       } catch (error) {
+        console.error(error);
         reject(error);
       }
     });

@@ -4,50 +4,40 @@ const BorderServices = require("../services/BorderServices");
 const { ObjectId } = require("mongoose").Types;
 const _ = require("lodash");
 
-var chu_category
+var chu_category;
 
-var xuLycategory = (so_category) =>{
-  if(so_category == 1)
-    {
-      chu_category = {$in:["Ẩm thực đường phố","Nhà hàng","Café"]}
-    }
-    if(so_category == 2)
-    {
-      chu_category = {$in:["Café","Cuộc sống về đêm","Giải trí"]}
-    }
-    if(so_category == 3)
-    {
-      chu_category = {$in:["Giải trí","Làm đẹp","Thể thao"]}
-    }
-    if(so_category == 4)
-    {
-      chu_category = {$in:["Các cây ATM","Tài chính"]}
-    }
-    if(so_category == 5)
-    {
-      chu_category = {$in:["Sức khỏe"]}
-    }
-    if(so_category == 6)
-    {
-      chu_category = {$in:["Khách sạn và chỗ ở"]}
-    }
-    if(so_category == 7)
-    {
-      chu_category = {$in:["Mua sắm"]}
-    }
-    if(so_category == 8)
-    {
-      chu_category = {$in:["Dịch vụ","Giao thông"]}
-    }
-    if(so_category == 9)
-    {
-      chu_category = {$in:["Du lịch","Thắng cảnh","Tổ chức"]}
-    }
-    if(so_category == 10)
-    {
-      chu_category = {$in:["Giáo dục"]}
-    }
-}
+var xuLycategory = (so_category) => {
+  if (so_category == 1) {
+    chu_category = { $in: ["Ẩm thực đường phố", "Nhà hàng", "Café"] };
+  }
+  if (so_category == 2) {
+    chu_category = { $in: ["Café", "Cuộc sống về đêm", "Giải trí"] };
+  }
+  if (so_category == 3) {
+    chu_category = { $in: ["Giải trí", "Làm đẹp", "Thể thao"] };
+  }
+  if (so_category == 4) {
+    chu_category = { $in: ["Các cây ATM", "Tài chính"] };
+  }
+  if (so_category == 5) {
+    chu_category = { $in: ["Sức khỏe"] };
+  }
+  if (so_category == 6) {
+    chu_category = { $in: ["Khách sạn và chỗ ở"] };
+  }
+  if (so_category == 7) {
+    chu_category = { $in: ["Mua sắm"] };
+  }
+  if (so_category == 8) {
+    chu_category = { $in: ["Dịch vụ", "Giao thông"] };
+  }
+  if (so_category == 9) {
+    chu_category = { $in: ["Du lịch", "Thắng cảnh", "Tổ chức"] };
+  }
+  if (so_category == 10) {
+    chu_category = { $in: ["Giáo dục"] };
+  }
+};
 
 module.exports = {
   search: async (data, params, query) => {
@@ -60,17 +50,20 @@ module.exports = {
     so_category = parseInt(query.category);
     // hàm lấy ra category
     xuLycategory(so_category);
-    
+
     db_query.category = chu_category;
 
     return new Promise(async (resolve, reject) => {
       let utilities = [];
       try {
         if (border_id) {
-          let border = await BorderServices.findOneByBorder(data, params, query);
+          let border = await BorderServices.findOneByBorder(
+            data,
+            params,
+            query
+          );
 
-          if (!border) 
-              throw new Error("border is not found");
+          if (!border) throw new Error("border is not found");
           else {
             db_query.gps = { $geoWithin: { $geometry: border.geometry } };
           }
@@ -80,7 +73,7 @@ module.exports = {
           //console.log(borders1);
           //console.log(borders[1]);
           //console.log(typeof(borders[1]));
-          
+
           db_query.gps = {
             $geoWithin: {
               $box: [
@@ -92,26 +85,23 @@ module.exports = {
         }
 
         //find utilities
-        if(page)
-        {
-            page = parseInt(page);
-            var skip = (page - 1)*_limit;
+        if (page) {
+          page = parseInt(page);
+          var skip = (page - 1) * _limit;
 
-            utilities = Utility.find(db_query)
+          utilities = Utility.find(db_query)
             .skip(skip)
             .limit(_limit)
-            .select("gps address title -_id")
+            .select("gps address title img_big -_id")
+            .lean();
+          resolve(utilities);
+        } else {
+          utilities = Utility.find(db_query)
+            .limit(_limit)
+            .select("gps address title img_big -_id")
             .lean();
           resolve(utilities);
         }
-        else{
-          utilities = Utility.find(db_query)
-          .limit(_limit)
-          .select("gps address title -_id")
-          .lean();
-        resolve(utilities);
-        }
-       
       } catch (error) {
         reject(error);
       }
@@ -125,14 +115,18 @@ module.exports = {
     so_category = parseInt(query.category);
     // hàm lấy ra category
     xuLycategory(so_category);
-    
+
     db_query.category = chu_category;
 
     return new Promise(async (resolve, reject) => {
       let utilities = [];
       try {
         if (area_id) {
-          let border = await BorderServices.findOneByBorder(data, params, query);
+          let border = await BorderServices.findOneByBorder(
+            data,
+            params,
+            query
+          );
           if (!border) throw new Error("border is not found");
           else {
             db_query.gps = { $geoWithin: { $geometry: border.geometry } };
@@ -149,10 +143,8 @@ module.exports = {
           };
         }
 
-        utilities = Utility.find(db_query)
-          .limit(_limit); 
-          resolve(utilities);
-          
+        utilities = Utility.find(db_query).limit(_limit);
+        resolve(utilities);
       } catch (error) {
         reject(error);
       }
@@ -170,6 +162,4 @@ module.exports = {
       }
     });
   },
-
-  
 };

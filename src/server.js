@@ -41,12 +41,6 @@ app.use(upload.none());
 app.use(logMiddleware);
 app.use(cors());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(
-  bodyParser.urlencoded({
-    extended: false,
-  })
-);
 
 app.use(require("express-status-monitor")());
 
