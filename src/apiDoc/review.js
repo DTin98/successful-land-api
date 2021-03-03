@@ -22,7 +22,11 @@
  * @apiParamExample {json} Request-Example:
  *     http://175.41.154.174:4000/v1/review/addReviewPoint
  *Post
-*{
+*
+HEADERS
+- Authorization: BearereyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDA1M2MxNzYwNzUyNTI0MzQxZjAxMDciLCJ1c2VybmFtZSI6ImhpZW4iLCJpYXQiOjE2MTEzOTMxNDIsImV4cCI6MTYxMTQyOTE0Mn0.oh1iAOVbmy9D_NAz3hJZJwDkzzr-1g0oaJBuLXavEGY
+Body raw
+{
     "point": 1,
     "khongkhi_text": "Tốt",
     "khongkhi_point": 4,
@@ -127,7 +131,10 @@
  * @apiParamExample {json} Request-Example:
  *     http://175.41.154.174:4000/v1/review/deleteReviewPoint
  *Post
-*{
+*HEADERS
+- Authorization: BearereyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDA1M2MxNzYwNzUyNTI0MzQxZjAxMDciLCJ1c2VybmFtZSI6ImhpZW4iLCJpYXQiOjE2MTEzOTMxNDIsImV4cCI6MTYxMTQyOTE0Mn0.oh1iAOVbmy9D_NAz3hJZJwDkzzr-1g0oaJBuLXavEGY
+Body raw
+{
     "area_id": "5f9eb794bfeb451c39400633"
 }
  *
@@ -156,7 +163,10 @@
  * @apiParamExample {json} Request-Example:
  *     http://175.41.154.174:4000/v1/review/addReviewText
  *Post
-*{
+*HEADERS
+- Authorization: BearereyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDA1M2MxNzYwNzUyNTI0MzQxZjAxMDciLCJ1c2VybmFtZSI6ImhpZW4iLCJpYXQiOjE2MTEzOTMxNDIsImV4cCI6MTYxMTQyOTE0Mn0.oh1iAOVbmy9D_NAz3hJZJwDkzzr-1g0oaJBuLXavEGY
+Body raw
+{
     "review_text": "mon ngon",
     "area_id": "5f9eb794bfeb451c39400633"
 }
@@ -233,7 +243,10 @@
  * @apiParamExample {json} Request-Example:
  *     http://175.41.154.174:4000/v1/review/deleteReviewText
  *Post
-*{
+*HEADERS
+- Authorization: BearereyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDA1M2MxNzYwNzUyNTI0MzQxZjAxMDciLCJ1c2VybmFtZSI6ImhpZW4iLCJpYXQiOjE2MTEzOTMxNDIsImV4cCI6MTYxMTQyOTE0Mn0.oh1iAOVbmy9D_NAz3hJZJwDkzzr-1g0oaJBuLXavEGY
+Body raw
+{
     "area_id": "5f9eb794bfeb451c39400633"
 }
  *

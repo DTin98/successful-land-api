@@ -3,7 +3,6 @@
  * @apiName priceAVSeach
  * @apiGroup priceRoutes
  *
- * @apiParam (Query string) {String} type 1,2,3 là tỉnh, huyện, hoặc xã (type của areas)
  * @apiParam (Query string) {String} provinceCode mã Tỉnh
 - VD: ho-chi-minh, tien-giang,… 
  * @apiParam (Query string) {String} districtCode mã quận/huyện
@@ -18,7 +17,7 @@ có thể bằng "all" nghĩa là tất cả các loại bất động sản
   nếu 2015 <= year <= 2019, thì giá sẽ được xuất theo trung bình tháng của năm đó: (12 cột tương ứng 12 tháng) 
 
  * @apiParamExample {json} Request-Example:
- *     http://47.241.7.27:5000/price?type=3&provinceCode=ho-chi-minh&districtCode=quan-3&villageCode=phuong-06&year=2019&category_id=1&fbclid=IwAR1BGxCyjsLz9-u5EbCrneoMy8Hspns1v7GFLGvv8ARpvJU1weoenSNwDXY
+ *     http://47.241.7.27:5000/price?type=3&provinceCode=ho-chi-minh&districtCode=quan-3&villageCode=phuong-06&year=2019&category_id=1
  *
  *
  * @apiSuccessExample Success-Response:
@@ -137,6 +136,112 @@ có thể bằng "all" nghĩa là tất cả các loại bất động sản
     {
         "id": 14,
         "name": "Cho thuê văn phòng"
+    }
+]
+ *
+ */
+
+/**
+ * @api {get} structure API cơ cấu theo thể loại bất động sản của khu vực
+ * @apiName structureSeach
+ * @apiGroup priceRoutes
+ *
+ * @apiParam (Query string) {String} provinceCode mã Tỉnh
+- VD: ho-chi-minh, tien-giang,… 
+ * @apiParam (Query string) {String} districtCode mã quận/huyện
+- VD: quan-1, huyen-binh-chanh,…
+ * @apiParam (Query string) {String} villageCode mã xã/phường
+- VD: phuong-7, xa-tan-phu,… 
+ * @apiParam (Query string) {String} yyear: năm cần thống kê về cơ cấu theo thể loại (hiện tại year nằm trong khoản 2015 - 2019) 
+- year = "all", thì cơ cấu được thống kê theo tất cả các năm: 2015,2016,2017,2018,2019 
+- nếu 2015 <= year <= 2019, thì cơ cấu theo từng năm: (12 cột tương ứng 12 tháng) 
+
+ * @apiParamExample {json} Request-Example:
+ *     http://47.241.7.27:5000/structure?provinceCode=ho-chi-minh&year=2019&districtCode=quan-3&villageCode=phuong-06
+ *
+ *
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *   [
+    {
+        "province": "Hồ Chí Minh",
+        "district": "Quận 3",
+        "village": "Phường 06",
+        "provinceCode": "ho-chi-minh",
+        "districtCode": "quan-3",
+        "villageCode": "phuong-06",
+        "structure_by_year": [
+            {
+                "year": 2019,
+                "title": "Biểu đồ cơ cấu mua bán bất động sản theo thể loại năm 2019",
+                "data": [
+                    {
+                        "x": "Bán căn hộ chung cư",
+                        "y": 4
+                    },
+                    {
+                        "x": "Bán nhà biệt thự, liền kề",
+                        "y": 4
+                    },
+                    {
+                        "x": "Bán nhà mặt phố",
+                        "y": 1178
+                    },
+                    {
+                        "x": "Bán nhà riêng",
+                        "y": 278
+                    },
+                    {
+                        "x": "Bán trang trại, khu nghỉ dưỡng",
+                        "y": 0
+                    },
+                    {
+                        "x": "Bán đất",
+                        "y": 47
+                    },
+                    {
+                        "x": "Bán đất nền dự án",
+                        "y": 0
+                    },
+                    {
+                        "x": "Bán loại bất động sản khác",
+                        "y": 2
+                    },
+                    {
+                        "x": "Cho thuê căn hộ chung cư",
+                        "y": 13
+                    },
+                    {
+                        "x": "Cho thuê cửa hàng, ki ốt",
+                        "y": 21
+                    },
+                    {
+                        "x": "Cho thuê kho, nhà xưởng, đất",
+                        "y": 6
+                    },
+                    {
+                        "x": "Cho thuê nhà mặt phố",
+                        "y": 416
+                    },
+                    {
+                        "x": "Cho thuê nhà riêng",
+                        "y": 77
+                    },
+                    {
+                        "x": "Cho thuê nhà trọ, phòng trọ",
+                        "y": 10
+                    },
+                    {
+                        "x": "Cho thuê văn phòng",
+                        "y": 50
+                    },
+                    {
+                        "x": "Cho thuê loại bất động sản khác",
+                        "y": 0
+                    }
+                ]
+            }
+        ]
     }
 ]
  *
