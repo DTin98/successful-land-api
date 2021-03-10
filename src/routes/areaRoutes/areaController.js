@@ -2,8 +2,8 @@ const reqResponse = require("../../helpers/responseHandler");
 const { validationResult } = require("express-validator");
 const AreaServices = require("../../services/AreaServices");
 const userServices = require("../../services/UserServices");
-const axios = require("axios");
-const _ = require("lodash");
+//const axios = require("axios");
+//const _ = require("lodash");
 
 module.exports = {
   search: async (req, res) => {
@@ -145,6 +145,13 @@ module.exports = {
       console.error(error);
       switch (error.message) {
         case "area is not found":
+          return res
+            .status(400)
+            .send(
+              reqResponse.customErrorResponse(400, "Invalid", error.message)
+            );
+          break;
+        case "area bi trung":
           return res
             .status(400)
             .send(

@@ -57,6 +57,22 @@ module.exports = {
         let area = await Area.findOne({ _id: data.areaId });
         if (!area) reject(new Error("area is not existed"));
 
+        //kiem tra USer da tung add areadID chua
+        User.find({})
+          .then((dataUser) => {
+            dataUser.map((data1) => {
+              data1.favoriteAreas.map((data2) => {
+                console.log(data.areaId);
+                if (data2._id == data.areaId) {
+                  reject(new Error("area bi trung"));
+                }
+              });
+            });
+          })
+          .catch((err) => {
+            console.log("loi:", err);
+          });
+
         await User.updateOne(
           {
             $or: [{ username: data.username }, { email: data.email }],

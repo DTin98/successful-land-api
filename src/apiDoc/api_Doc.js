@@ -35,14 +35,16 @@
  * @apiName addFavorite
  * @apiGroup areaRoutes
  *
- * @apiParam {String} username Truyền username.
  * @apiParam {String} areaId Truyền AreaID.
 
  * @apiParamExample {json} Request-Example:
  *     http://175.41.154.174:4000/v1/areas/addFavorite
  *Post
-	username: hien
-	areaId: 5f9eb794bfeb451c39400633
+HEADERS
+- Authorization: BearereyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDA1M2MxNzYwNzUyNTI0MzQxZjAxMDciLCJ1c2VybmFtZSI6ImhpZW4iLCJpYXQiOjE2MTEzOTMxNDIsImV4cCI6MTYxMTQyOTE0Mn0.oh1iAOVbmy9D_NAz3hJZJwDkzzr-1g0oaJBuLXavEGY
+Body raw
+	"areaId": "5f9eb794bfeb451c39400633"
+	
 	
  *
  * @apiSuccessExample Success-Response:
@@ -58,14 +60,15 @@
  * @apiName deleteFavorite
  * @apiGroup areaRoutes
  *
- * @apiParam {String} username Truyền username.
  * @apiParam {String} areaId Truyền AreaID.
 
  * @apiParamExample {json} Request-Example:
  *     http://175.41.154.174:4000/v1/areas/deleteFavorite
  *Post
-	username: hien
-	areaId: 5f9eb794bfeb451c39400633
+HEADERS
+- Authorization: BearereyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDA1M2MxNzYwNzUyNTI0MzQxZjAxMDciLCJ1c2VybmFtZSI6ImhpZW4iLCJpYXQiOjE2MTEzOTMxNDIsImV4cCI6MTYxMTQyOTE0Mn0.oh1iAOVbmy9D_NAz3hJZJwDkzzr-1g0oaJBuLXavEGY
+Body raw
+	"areaId": "5f9eb794bfeb451c39400633"
 	
  *
  * @apiSuccessExample Success-Response:
@@ -88,9 +91,9 @@
  * @apiParamExample {json} Request-Example:
  *     http://175.41.154.174:4000/v1/local/register
  *Post
-	username: hien
-	password: hien123
-	email: hien123@gmail.com
+	"username": "hien"
+	"password": "hien123"
+	"email": "hien123@gmail.com"
  *
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
@@ -123,8 +126,8 @@
  * @apiParamExample {json} Request-Example:
  *     http://175.41.154.174:4000/v1/local/login
  *Post
-	username: hien
-	password: hien123
+	"username": "hien"
+	"password": "hien123"
  *
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
