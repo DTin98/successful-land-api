@@ -59,7 +59,7 @@ module.exports = {
         dataCount = dataTest2(query);
       } else {
         var utilities = await UtilityServices.count(data, params, query);
-        var dataCount = { count: utilities.length, category: query.category };
+        var dataCount = { count: utilities, category: query.category };
       }
       return res.status(200).send(dataCount);
     } catch (error) {

@@ -6,12 +6,13 @@ const Validation = require("../../validation/BorderValidation");
 
 module.exports = (app) => {
   //ReviewPoint
+  router.route("/getReview").get(reviewController.getReview);
   router
     .route("/addReviewPoint")
     .post(Middleware, reviewController.addReviewPoint);
   router
     .route("/getReviewPointByArea")
-    .get(reviewController.getReviewPointByArea);
+    .get(Middleware, reviewController.getReviewPointByArea);
   router
     .route("/getReviewPointByUser")
     .get(reviewController.getReviewPointByUser);
@@ -23,7 +24,7 @@ module.exports = (app) => {
   router
     .route("/addReviewText")
     .post(Middleware, reviewController.addReviewText);
- 
+
   router
     .route("/getReviewTextByArea")
     .get(reviewController.getReviewTextByArea);

@@ -143,7 +143,7 @@ module.exports = {
           };
         }
 
-        utilities = Utility.find(db_query).limit(_limit);
+        utilities = Utility.countDocuments(db_query).lean();
         resolve(utilities);
       } catch (error) {
         reject(error);

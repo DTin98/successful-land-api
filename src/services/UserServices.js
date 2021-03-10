@@ -74,10 +74,6 @@ module.exports = {
     });
   },
   deleteOneFavoriteArea: async (data, params, query) => {
-    console.log(
-      "🚀 ~ file: UserServices.js ~ line 77 ~ deleteOneFavoriteArea: ~ data",
-      data
-    );
     return new Promise(async (resolve, reject) => {
       try {
         await User.updateOne(
