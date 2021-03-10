@@ -73,6 +73,14 @@ module.exports = {
     let user_id = req.decoded._id;
 
     try {
+      let ketqua = await ReviewServices.addReviewPoint(
+        data,
+        params,
+        query,
+        user_id
+      );
+      if (!ketqua) throw new Error("add khong thanh cong");
+      return res.status(200).send({ ketqua: "add thanh cong" });
     } catch (error) {
       console.error(error);
       switch (error.message) {
